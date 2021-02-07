@@ -1,15 +1,18 @@
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Bin2Dec</title>
     </head>
     <body>
     
         <div id="app">
             <h1>Bin2Dec</h1>
+            <p>{{ error_message }}</p>
             <label for="binary">Binary</label>
-            <input type="text" id="binary" name="binary" maxlength="8" v-model="binary" v-on:keydown="binKeyDownEvent">
+            <input type="text" id="binary" name="binary" v-model="binary">
             <label for="decimal">Decimal</label>
-            <input type="text" id="decimal" name="decimal" v-model="decimal">
+            <input type="text" id="decimal" name="decimal" v-model="decimal" disabled>
+            <button type="button" v-on:click="convert">Convert</button>
         </div>
     
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -18,12 +21,29 @@
                 el: '#app',
                 data: {
                     binary: "",
-                    decimal: ""
+                    decimal: "",
+                    error_message: null
                 },
                 methods: {
-                    binKeyDownEvent: function(event) {
-                        if(event.key !== "0" && event.key !== "1" && event.key !== "Backspace") {
-                            event.preventDefault();
+                    binInputIsValid: function() {
+                        if(this.binary.match(/^[0-1]+$/g) === null) {
+                            this.error_message = "Enter either 0 or 1";
+                            return false;
+                        }
+                        this.error_message = null;
+                        return true;
+                    },
+                    convert: function() {
+                        if(this.binInputIsValid()) {
+                            let decimalResult = 0;
+                            let counter = this.binary.length - 1;
+
+                            for(c of this.binary) {
+                                decimalResult += parseInt(c) * (Math.pow(2, counter));
+                                counter -= 1;
+                            }
+
+                            this.decimal = decimalResult;
                         }
                     },
                 }

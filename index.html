@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Bin2Dec</title>
+    </head>
+    <body>
+    
+        <div id="app">
+            <h1>Bin2Dec</h1>
+            <label for="binary">Binary</label>
+            <input type="text" id="binary" name="binary" maxlength="8" v-model="binary" v-on:keydown="binKeyDownEvent">
+            <label for="decimal">Decimal</label>
+            <input type="text" id="decimal" name="decimal" v-model="decimal">
+        </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    binary: "",
+                    decimal: ""
+                },
+                methods: {
+                    binKeyDownEvent: function(event) {
+                        if(event.key !== "0" && event.key !== "1" && event.key !== "Backspace") {
+                            event.preventDefault();
+                        }
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

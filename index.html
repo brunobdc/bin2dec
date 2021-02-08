@@ -2,12 +2,35 @@
     <head>
         <meta charset="utf-8">
         <title>Bin2Dec</title>
+        <link rel="stylesheet" href="reset.css">
+        <style>
+            body {
+                height: 75%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            label, button {
+                display: block;
+                margin-top: 1em;
+            }
+            h1 {
+                font-size: 200%;
+                font-weight: bold;
+            }
+            #app {
+                padding: 2em;
+                border: 0.5px solid;
+            }
+            .err_message {
+                color: red;
+            }
+        </style>
     </head>
     <body>
-    
         <div id="app">
             <h1>Bin2Dec</h1>
-            <p>{{ error_message }}</p>
+            <p class="err_message">{{ error_message }}</p>
             <label for="binary">Binary</label>
             <input type="text" id="binary" name="binary" v-model="binary">
             <label for="decimal">Decimal</label>

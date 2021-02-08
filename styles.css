@@ -1,0 +1,21 @@
+body {
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label, button {
+    display: block;
+    margin-top: 1em;
+}
+h1 {
+    font-size: 200%;
+    font-weight: bold;
+}
+#app {
+    padding: 2em;
+    border: 0.5px solid;
+}
+.err_message {
+    color: red;
+}
